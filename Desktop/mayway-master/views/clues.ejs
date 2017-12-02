@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= name %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= name %></h1>
+    <p>Welcome  <%= name %> located at <%=lat %> <%= lon %> </p>
+    <form action="/route/clues" method="get">
+        <input id="ulat" type="hidden" name="ulat" value=""></input>
+        <input id="ulon" type="hidden" name="ulon" value=""></input>
+        <input id="plat" type="hidden" name="plat" value="<%= lat %>"></input>
+        <input id="plon" type="hidden" name="plon" value="<%= lon %>"></input>
+        <input id="name" type="hidden" name="name" value="<%= name %>"></input>
+        <input type="submit" value="I'm Here"></input>
+    </form>
+    <div>
+
+    <% if (result) {
+      for (let url of result.photoUrls) { %>
+      <a href="/route/clues?plat=<%= lat %>&plon=<%= lon %>"><img src="<%= url %>"></img></a>
+    <% 
+      }
+    } %>
+
+      
+    
+    </div>    
+
+  </body>
+</html>

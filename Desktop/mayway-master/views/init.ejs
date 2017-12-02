@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MayWay <%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style_old.css' />
+    <link rel='stylesheet' href='/stylesheets/styles.css' />    
+    <link rel="icon"
+          type="image/png"
+          href="./images/maywayLogo.ico"
+    />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="styles.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="functions.js"></script>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+
+    <meta name="description" content="MayWay because in this world you have to make your own way.  Leading scavenger innovators of the world"/>
+    <meta name="keywords" content="MayWay, scavengers"/>    
+  </head>
+  <body onload="getLatLon()">
+  	<script>
+  		function getLatLon() {
+  			navigator.geolocation.getCurrentPosition(function(pos) {
+  				document.getElementById('ulat').value = pos.coords.latitude;
+  				document.getElementById('ulon').value = pos.coords.longitude;
+  			})
+  		}
+  	</script>
+    <p>Welcome <%= name %> located at <%= lat %> <%= lon %></p>
+    <div style="text-align:center;">
+	<image src="images/maywayLogo.png" style="width: 600px; height: 600px;"/>
+	</div>
+	<div style="text-align:center">
+
+	    <form action="/route/clues" method="get">
+	        <input id="ulat" type="hidden" name="ulat" value=""></input>
+	        <input id="ulon" type="hidden" name="ulon" value=""></input>
+	        <input id="plat" type="hidden" name="plat" value="<%= lat %>"></input>
+	        <input id="plon" type="hidden" name="plon" value="<%= lon %>"></input>
+		    <div style="color: white;">
+		        <label for="userInput">Choose a username: </label>
+		        <input style="color: black;" type="text" id="userInput" name="name">
+		        <input style="display: none;" id="lat" value="" name="lat">
+		        <input style="display:none;" id="lon" value="" name="lon">
+		        <button type="submit">Submit</button>
+		    </div>
+	        <input type="submit" value="I'm Here"></input>
+	    </form>
+	</div>
+<!--     <div>
+    	<% if (result) { 
+    		for(let url of result.photoUrls) {
+    	%>
+		  <img src="<%= url %>"></img>
+		<% 
+			}
+		}
+		 %>
+    </div>
+ -->
+  </body>
+</html>
